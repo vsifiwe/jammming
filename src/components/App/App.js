@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
+import Spotify from "../../util/Spotify";
 import "./App.css";
 
 export default class App extends Component {
@@ -9,28 +10,10 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      searchResults: [
-        {
-          name: "no cap",
-          artist: "ish kevin",
-          album: "no cap",
-          id: "1",
-        },
-        {
-          name: "igikwe",
-          artist: "comfy",
-          album: "igikwe",
-          id: "2",
-        },
-        {
-          name: "igikobwa",
-          artist: "ruti",
-          album: "igikobwa",
-          id: "3",
-        },
-      ],
+      searchResults: [],
       playlistname: "Bangerz",
       playlisttracks: [],
+      uris: [],
     };
   }
 
@@ -58,6 +41,28 @@ export default class App extends Component {
     this.setState({ playlistname: name });
   }
 
+  savePlaylist() {
+    let trackURIs = [];
+    this.state.playlisttracks.map((track) => {
+      trackURIs.push(track.uri);
+    });
+    Spotify.savePlaylist(this.state.playlistname, trackURIs).then(() => {
+      this.setState({
+        searchResults: [],
+        playlistname: "Bangerz",
+        playlisttracks: [],
+        uris: [],
+      });
+    });
+  }
+
+  search(searchterm) {
+    Spotify.search(searchterm).then((tracks) => {
+      console.log(tracks);
+      this.setState({ searchResults: tracks });
+    });
+  }
+
   render() {
     return (
       <div>
@@ -65,7 +70,7 @@ export default class App extends Component {
           Ja<span className="highlight">mmm</span>ing
         </h1>
         <div className="App">
-          <SearchBar />
+          <SearchBar onSearch={this.search.bind(this)} />
           <div className="App-playlist">
             <SearchResults
               searchres={this.state.searchResults}
@@ -76,6 +81,7 @@ export default class App extends Component {
               name={this.state.playlistname}
               removetrack={this.removetrack.bind(this)}
               onNameChange={this.updatePlaylistName.bind(this)}
+              onSave={this.savePlaylist.bind(this)}
             />
           </div>
         </div>

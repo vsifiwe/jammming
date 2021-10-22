@@ -15,7 +15,9 @@ export default class Playlist extends Component {
           action={this.props.removetrack}
           isremoval={true}
         />
-        <button className="Playlist-save">SAVE TO SPOTIFY</button>
+        <button className="Playlist-save" onClick={this.props.onSave}>
+          SAVE TO SPOTIFY
+        </button>
       </div>
     );
   }
