@@ -19,3 +19,8 @@ Jammming is a React Project bootstrapped with [Create React App](https://github.
 This project is deployed on Netlify on [this link](https://silly-perlman-b4de38.netlify.app/).
 
 ### Screenshots
+
+- Home Page
+  ![Home Page](https://raw.githubusercontent.com/vsifiwe/jammming/main/screenshot/1.png)
+- Search
+  ![Search](https://raw.githubusercontent.com/vsifiwe/jammming/main/screenshot/search.png)
