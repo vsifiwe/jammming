@@ -1,7 +1,8 @@
 let accesstoken = null;
 let expirationtime = null;
 const client_id = "508caca746584167a95c1d4a57a89a84";
-const redirect_uri = "http://localhost:3000/";
+// const redirect_uri = "http://localhost:3000/"; // LocalHost
+const redirect_uri = "https://silly-perlman-b4de38.netlify.app/";
 let playlistID = null;
 
 const Spotify = {
