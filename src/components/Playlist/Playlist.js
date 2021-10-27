@@ -19,7 +19,7 @@ export default class Playlist extends Component {
           isremoval={true}
         />
         <button className="Playlist-save" onClick={this.props.onSave}>
-          SAVE TO SPOTIFY
+          SAVE TO Deezer
         </button>
       </div>
     );
